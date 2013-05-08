@@ -4,10 +4,11 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>reveal.js - The HTML Presentation Framework</title>
+		<title>The Glory of</title>
 
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-		<meta name="author" content="Hakim El Hattab">
+		<meta name="description" content="Core concepts of RESTful services.">
+		<meta name="author" content="Sławomir Chrobak">
+		<meta name="company" content="X-Formation">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -15,7 +16,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 		<link rel="stylesheet" href="css/reveal.min.css">
-		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+		<link rel="stylesheet" href="css/theme/beige.css" id="theme">
 
 		<!-- For syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -38,293 +39,520 @@
 			<div class="slides">
 
 				<section>
-					<h1>Reveal.js</h1>
-					<h3>HTML Presentations Made Easy</h3>
-					<p>
-						<small>Created by <a href="http://hakim.se">Hakim El Hattab</a> / <a href="http://twitter.com/hakimel">@hakimel</a></small>
-					</p>
+					<h1>The Glory of REST</h1>
+				</section>
+
+				<section data-transition="zoom">
+					<h1>Theory</h1>
+					<img style="width: 18em" src="http://www.redorbit.com/media/uploads/2004/10/6_60c162484c1943aae138f09b8da030e95.jpg" alt="Theory" /><br /><small>Source: www.redorbit.com</small>
 				</section>
 
 				<section>
-					<h2>Heads Up</h2>
-					<p>
-						reveal.js is a framework for easily creating beautiful presentations using HTML. You'll need a browser with
-						support for CSS 3D transforms to see it in its full glory.
-					</p>
+					<section>
+						<h1>Web Service</h1>
+						<blockquote>A web service is an abstraction layer, like an operating system API or a programming language library.</blockquote>
+					</section>
+					<section>
+						<h2>RPC-Style Architectures</h2>
+						<ul>
+							<li>envelope full of data</li>
+							<li>HTTP and SOAP are envelope formats</li>
+							<li>RPC-Style service defines it's own vocabulary</li>
+							<li>RESTful WS share standard HTTP methods vocabulary</li>
+							<li>REST Uniform Interface</li>
+						</ul>
+						<aside class="notes">An RPC-style web service accepts an envelope full of data from its client, and sends a similar envelope back. The method and the scoping information are kept inside the envelope, or on stickers applied to the envelope. What kind of envelope is not important to my classification, but HTTP is a popular envelope format, since any web service worthy of the name must use HTTP anyway. SOAP is another popular envelope format (transmitting a SOAP document over HTTP puts the SOAP envelope inside an HTTP envelope). Every RPC-style service defines a brand new vocabulary. Computer programs work this way as well: every time you write a program, you define functions with different names. By contrast, all RESTful web services share a standard vocabulary of HTTP methods. Every object in a RESTful service responds to the same basic</aside>
+					</section>
+					<section>
+						<p>RESTful -  different URIs for different values</p>
+						<p>RPC-style - URI (service endpoint) for something that can be processed as a command</p>
+						<aside class="notes">Where a RESTful service would expose different URIs for different values of the scoping information, an RPC-style service typically exposes a URI for each “document processor”: something that can open the envelopes and transform them into software commands.</aside>
+					</section>
+					<section>
+						<h2>REST-RPC Hybrid Architectures</h2>
+						<blockquote>Web service between the RESTful web services and the purely RPC-style services</blockquote>
+						<aside class="notes">This is a term I made up for describing web services that fit somewhere in between the RESTful web services and the purely RPC-style services. These services are often created by programmers who know a lot about real-world web applications, but not much about the theory of REST</aside>
+					</section>
+					<section>
+						<h2>Few REST-RPC examples</h2>
+						<ul>
+							<li>The del.icio.us API</li>
+							<li>The "REST" Flickr web API</li>
+							<li>Many other allegedly RESTful web services</li>
+							<li>Most web applications</li>
+						</ul>
+						<aside class="notes">From a design standpoint, I don’t think anybody sets out to to design a service as a REST-RPC hybrid. Because of the way HTTP works, any RPC-style service that uses plain HTTP and exposes multiple URIs tends to end up either RESTful or hybrid. Many programmers design web services exactly as they’d design web applications, and end up with hybrid services.</aside>
+					</section>
+				</section>
 
+				<section>
+					<h2>SOAP as a competitor to REST</h2>
+					<blockquote>The primary competitors to RESTful architectures are RPC architectures, not specific technologies like SOAP.</blockquote>
 					<aside class="notes">
-						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
+						If you get involved with web service debates you’ll hear this one a lot. You won’t hear it here because it gives the wrong impression. The primary competitors to RESTful architectures are RPC architectures, not specific technologies like SOAP. It is true that basically every SOAP service that now exists has an RPC architecture, but SOAP is just a way of putting a document in an envelope with stickers on it, like HTTP. SOAP is tied to the RPC architecture mainly by historical contingency and the current generation of automated tools.
+						
+						There is a real tension here, but it’s not one I’ll cover much in this book. Roughly speaking, it’s the tension between services that put their documents in a SOAP envelope and then an HTTP envelope; and services that only use the HTTP envelope.
 					</aside>
 				</section>
 
-				<!-- Example of nested vertical slides -->
 				<section>
-					<section>
-						<h2>Vertical Slides</h2>
-						<p>
-							Slides can be nested inside of other slides,
-							try pressing <a href="#" class="navigate-down">down</a>.
-						</p>
-						<a href="#" class="image navigate-down">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
+					<section data-transition="zoom">
+						<h2>Richardson Maturity Model</h2>
+						<img src="http://martinfowler.com/articles/images/richardsonMaturityModel/overview.png" alt="The Glory of REST" />
+						<br />
+						<small>Source: http://martinfowler.com</small>
 					</section>
 					<section>
-						<h2>Basement Level 1</h2>
-						<p>Press down or up to navigate.</p>
-					</section>
-					<section>
-						<h2>Basement Level 2</h2>
-						<p>Cornify</p>
-						<a class="test" href="http://cornify.com">
-							<img width="280" height="326" src="https://s3.amazonaws.com/hakim-static/reveal-js/cornify.gif" alt="Unicorn">
-						</a>
-					</section>
-					<section>
-						<h2>Basement Level 3</h2>
-						<p>That's it, time to go back up.</p>
-						<a href="#/2" class="image">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="-webkit-transform: rotate(180deg);">
-						</a>
-					</section>
-				</section>
-
-				<section>
-					<h2>Slides</h2>
-					<p>
-						Not a coder? No problem. There's a fully-featured visual editor for authoring these, try it out at <a href="http://slid.es" target="_blank">http://slid.es</a>.
-					</p>
-				</section>
-
-				<section>
-					<h2>Point of View</h2>
-					<p>
-						Press <strong>ESC</strong> to enter the slide overview.
-					</p>
-					<p>
-						Hold down alt and click on any element to zoom in on it using <a href="http://lab.hakim.se/zoom-js">zoom.js</a>. Alt + click anywhere to zoom back out.
-					</p>
-				</section>
-
-				<section>
-					<h2>Works in Mobile Safari</h2>
-					<p>
-						Try it out! You can swipe through the slides and pinch your way to the overview.
-					</p>
-				</section>
-
-				<section>
-					<h2>Marvelous Unordered List</h2>
-					<ul>
-						<li>No order here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-					</ul>
-				</section>
-
-				<section>
-					<h2>Fantastic Ordered List</h2>
-					<ol>
-						<li>One is smaller than...</li>
-						<li>Two is smaller than...</li>
-						<li>Three!</li>
-					</ol>
-				</section>
-
-				<section data-markdown>
-					<script type="text/template">
-						## Markdown support
-
-						For those of you who like that sort of thing. Instructions and a bit more info available [here](https://github.com/hakimel/reveal.js#markdown).
-
-						```
-						<section data-markdown>
-						  ## Markdown support
-
-						  For those of you who like that sort of thing.
-						  Instructions and a bit more info available [here](https://github.com/hakimel/reveal.js#markdown).
-						</section>
-						```
-					</script>
-				</section>
-
-				<section id="transitions">
-					<h2>Transition Styles</h2>
-					<p>
-						You can select from different transitions, like: <br>
-						<a href="?transition=cube#/transitions">Cube</a> -
-						<a href="?transition=page#/transitions">Page</a> -
-						<a href="?transition=concave#/transitions">Concave</a> -
-						<a href="?transition=zoom#/transitions">Zoom</a> -
-						<a href="?transition=linear#/transitions">Linear</a> -
-						<a href="?transition=fade#/transitions">Fade</a> -
-						<a href="?transition=none#/transitions">None</a> -
-						<a href="?#/transitions">Default</a>
-					</p>
-				</section>
-
-				<section id="themes">
-					<h2>Themes</h2>
-					<p>
-						Reveal.js comes with a few themes built in: <br>
-						<a href="?theme=sky#/themes">Sky</a> -
-						<a href="?theme=beige#/themes">Beige</a> -
-						<a href="?theme=simple#/themes">Simple</a> -
-						<a href="?theme=serif#/themes">Serif</a> -
-						<a href="?theme=night#/themes">Night</a> -
-						<a href="?#/themes">Default</a>
-					</p>
-					<p>
-						<small>
-							* Theme demos are loaded after the presentation which leads to flicker. In production you should load your theme in the <code>&lt;head&gt;</code> using a <code>&lt;link&gt;</code>.
-						</small>
-					</p>
-				</section>
-
-				<section>
-					<section data-state="alert">
-						<h2>Global State</h2>
-						<p>
-							Set <code>data-state="something"</code> on a slide and <code>"something"</code>
-							will be added as a class to the document element when the slide is open. This lets you
-							apply broader style changes, like switching the background.
-						</p>
-						<a href="#" class="image navigate-down">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
-					</section>
-					<section data-state="blackout">
-						<h2>"blackout"</h2>
-						<a href="#" class="image navigate-down">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
-						</a>
-					</section>
-					<section data-state="soothe">
-						<h2>"soothe"</h2>
-						<a href="#" class="image navigate-next">
-							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="-webkit-transform: rotate(-90deg);">
-						</a>
-					</section>
-				</section>
-
-				<section data-state="customevent">
-					<h2>Custom Events</h2>
-					<p>
-						Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
-					</p>
-					<pre><code data-trim contenteditable style="font-size: 18px; margin-top: 20px;">
-Reveal.addEventListener( 'customevent', function() {
-	console.log( '"customevent" has fired' );
-} );
-					</code></pre>
-				</section>
-
-				<section>
-					<h2>Clever Quotes</h2>
-					<p>
-						These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;The nice thing about standards is that there are so many to choose from&rdquo;</q> and block:
-					</p>
-					<blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
-						&ldquo;For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
-						reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.&rdquo;
-					</blockquote>
-				</section>
-
-				<section>
-					<h2>Pretty Code</h2>
-					<pre><code data-trim contenteditable>
-function linkify( selector ) {
-  if( supports3DTransforms ) {
-
-    var nodes = document.querySelectorAll( selector );
-
-    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
-      var node = nodes[i];
-
-      if( !node.className ) ) {
-        node.className += ' roll';
-      }
-    };
-  }
-}
-					</code></pre>
-					<p>Courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
-				</section>
-
-				<section>
-					<h2>Intergalactic Interconnections</h2>
-					<p>
-						You can link between slides internally,
-						<a href="#/2/3">like this</a>.
-					</p>
-				</section>
-
-				<section>
-					<section>
-						<h2>Fragmented Views</h2>
-						<p>Hit the next arrow...</p>
-						<p class="fragment">... to step through ...</p>
-						<ol>
-							<li class="fragment"><code>any type</code></li>
-							<li class="fragment"><em>of view</em></li>
-							<li class="fragment"><strong>fragments</strong></li>
-						</ol>
-
+						<h2>Level 0 - The swamp of POX</h2>
+						<blockquote>HTTP POST for all interactions</blockquote>
 						<aside class="notes">
-							This slide has fragments which are also stepped through in the notes window.
+							POX - Plain Old XML.
+							
+							Basically, a service that uses TCP for transport, primarily as a form of remote procedure call (RPC). Typically, these are not really leveraging HTTP in any meaningful fashion; most systems will use HTTP POST for all interactions. Also, you will often have a single endpoint for all interactions, regardless of whether or not they are strictly related. XML-RPC, SOAP, and JSON-RPC fall under this category.
 						</aside>
 					</section>
 					<section>
-						<h2>Fragment Styles</h2>
-						<p>There's a few styles of fragments, like:</p>
-						<p class="fragment grow">grow</p>
-						<p class="fragment shrink">shrink</p>
-						<p class="fragment roll-in">roll-in</p>
-						<p class="fragment fade-out">fade-out</p>
-						<p class="fragment highlight-red">highlight-red</p>
-						<p class="fragment highlight-green">highlight-green</p>
-						<p class="fragment highlight-blue">highlight-blue</p>
+						<h2>Level 1 - Resources</h2>
+						<blockquote>Distinct URL per object</blockquote>
+						<aside class="notes">
+							In these services, you start breaking the service into multiple services, one per “resource,” or, in object oriented terms, per object. This means a distinct URL per object, which means each has its own distinct identity on the web; this often extends not only to the collection of objects, but to individual objects under the collection as well (e.g., “/books” as well as “/books/life-of-pi”). The service may still be RPC in nature, however, and, at this level, often is still using a single HTTP method for all interactions with the resource.
+						</aside>
+					</section>
+					<section>
+						<h2>Level 2 - HTTP Verbs</h2>
+						<blockquote>Rather than doing RPC style methods, we leverage HTTP</blockquote>
+						<aside class="notes">
+							At this level, we start using HTTP verbs with our services in the way the HTTP specification intends. GET is for safe operations, and should be cacheable; POST is used for creation and/or updating; DELETE can be used to delete a resource; etc. Rather than doing RPC style methods, we leverage HTTP, occasionally passing additional parameters via the query string or request body. Considerations such as HTTP caching and idempotence are taken into account.
+						</aside>
+					</section>
+					<section>
+						<h2>Level 3 - Hypermedia Controls</h2>
+						<blockquote>Self-describing API</blockquote>
+						<aside class="notes">
+							Building on the previous level, our resource representations now also include links, which indicate what we can do next. At this level, our API becomes practically self-describing; given a single end-point, we should be able to start crawling it, using the links in a representation to lead us to the next actions.
+						</aside>
 					</section>
 				</section>
 
 				<section>
-					<h2>Spectacular image!</h2>
-					<a class="image" href="http://lab.hakim.se/meny/" target="_blank">
-						<img width="320" height="299" src="http://s3.amazonaws.com/hakim-static/portfolio/images/meny.png" alt="Meny">
-					</a>
+					<h1>So what is this REST thing?</h1>
+					<p>REST simply dictates that a given resource have a unique address.</p>
+					<p>You can interact with that address with standard HTTP verbs.</p>
 				</section>
 
 				<section>
-					<h2>Export to PDF</h2>
-					<p>Presentations can be <a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, below is an example that's been uploaded to SlideShare.</p>
-					<iframe id="slideshare" src="http://www.slideshare.net/slideshow/embed_code/13872948" width="455" height="356" style="margin:0;overflow:hidden;border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen> </iframe>
-					<script>
-						document.getElementById('slideshare').attributeName = 'allowfullscreen';
-					</script>
+					<section>
+						<h1>State and Statelessness</h1>
+					</section>
+
+					<section>
+						<h2>Two types of state:</h2>
+						<ol>
+							<li>resource state</li>
+							<li>application state</li>
+						</ol>
+					</section>
+
+					<section>
+						<p class="fragment fade-in">Resource state stays on the server and is only sent to the client in the form of representations.</p>
+						<p class="fragment fade-in">Application state stays on the client until it can be used to create, modify, or delete a resource. Then it's sent to the server as part of POST, PUT, or DELETE request, and becomes resource state.</p>
+						<p class="fragment fade-in">RESTful service is "stateless" if the server never stores any application state.</p>
+					</section>
+
+					<section>
+						<p>This is where the name <strong>"Representational State Transfer"</strong> comes from.<p>
+					</section>
+
+					<section>
+						<h2>Etags</h2>
+						<blockquote>ETags are used to compare entities from the same resource. By supplying an entity tag value in a conditional request header.</blockquote>
+						<aside class="notes">
+							HTTP provides a simple but powerful mechanism for aligning resource state expectations (and preventing race conditions) in the form of entity tags and conditional request headers. An entity tag value, or ETag, is an opaque string token that a server associates with a resource to uniquely identify the state of the resource over its lifetime. When the resource changes—that is, when one or more of its headers, or its entity body, changes—the entity tag changes accordingly, highlighting that state has been modified.
+
+							ETags are used to compare entities from the same resource. By supplying an entity tag value in a conditional request header—either an If-Match or an If-None-Match request header—a consumer can require the server to test a precondition related to the current resource state before applying the method supplied in the request.
+						</aside>
+					</section>
 				</section>
 
 				<section>
-					<h2>Take a Moment</h2>
-					<p>
-						Press b or period on your keyboard to enter the 'paused' mode. This mode is helpful when you want to take distracting slides off the screen
-						during a presentation.
-					</p>
+					<section>
+						<h1>Resource-Oriented Basics</h1>
+					</section>
+
+					<section>
+						<p>TODO: add list</p>
+						<aside class="notes">
+							The only differences between a web service and a web site are the audience (preprogrammed clients instead of human beings) and a few client capabilities. Both web services and web sites benefit from a resource-oriented design based on HTTP, URIs, and (usually) XML.
+
+							Every interesting thing your application manages should be exposed as a resource. A resource can be anything a client might want to link to: a work of art, a piece of information, a physical object, a concept, or a grouping of references to other resources.
+							A URI is the name of a resource. Every resource must have at least one name. A resource should have as few names as possible, and every name should be meaningful.
+							
+							The client cannot access resources directly. A web service serves representations of a resource: documents in specific data formats that contain information about the resource. The difference between a resource and its representation is somewhat academic for static web sites, where the resources are just files on disk that are sent verbatim to clients. The distinction takes on greater importance when the resource is a row in a database, a physical object, an abstract concept, or a real-world event in progress.
+							
+							All access to resources happens through HTTP’s uniform interface. These are the four basic HTTP verbs (GET, POST, PUT, and DELETE), and the two auxiliaries (HEAD and OPTIONS). Put complexity in your representations, in the variety of resources you expose, and in the links between resources. Don’t put it in the access methods.
+						</aside>
+					</section>
 				</section>
 
 				<section>
-					<h2>Stellar Links</h2>
+					<h2>The Generic ROA Procedure</h2>
+					<ol style="font-size: .8em">
+						<li>Figure out the data set</li>
+						<li>Split the data set into resources</li>
+						<br />For each kind of resource:
+						<li>Name the resources with URIs</li>
+						<li>Expose a subset of the uniform interface</li>
+						<li>Design the representation(s) accepted from the client</li>
+						<li>Design the representation(s) served to the client</li>
+						<li>Integrate this resource into existing resources, using hypermedia links and forms</li>
+						<li>Consider the typical course of events: what’s supposed to happen? Standard control flows like the Atom Publishing Protocol can help.</li>
+						<li>Consider error conditions: what might go wrong? Again, standard control flows can help.</li>
+					</ol>
+					<aside class="notes">
+						Web feeds allow software programs to check for updates published on a website. To provide a web feed, a site owner may use specialized software (such as a content management system) that publishes a list (or "feed") of recent articles or content in a standardized, machine-readable format. The feed can then be downloaded by programs that use it, like websites that syndicate content from the feed, or by feed reader programs that allow Internet users to subscribe to feeds and view their content.
+					</aside>
+				</section>
+
+				<section>
+					<h1>Addressability</h1>
+					<h2>Representations Should Be Addressable</h2>
+					<aside class="notes">
+						Let’s say you’ve exposed a press release at /releases/104. There’s an English and a Spanish version of the press release, an HTML and plain-text version of each. Your clients should be able set the Accept-Language request header to choose an English or Spanish representation of /releases/104, and the Accept request header to choose an HTML or plain-text representation. But you should also give each representation a separate URI: maybe URIs like /releases/104.en, /releases/104.es.html, and /releases/104.txt
+
+						It’s OK for a client to send information in HTTP request headers, so long as the server doesn’t make that the only way of selecting a resource or representation. Headers can also contain sensitive information like authentication credentials, or information that’s different for every client. But headers shouldn’t be the only tool a client has to specify which representation is served or which resource is selected.
+					</aside>
+				</section>
+
+				<section>
+					<h1>Connectedness</h1>
+					<aside class="notes">
+						In a well-connected service, the client can make a path through the application by following links and filling out forms. In a service that’s not connected, the client must use predefined rules to construct every URI it wants to visit. Right now the human web is very well-connected, because most pages on a web site can be reached by following links from the main page. Right now the programmable web is not very well-connected.
+					</aside>
+				</section>
+
+				<section>
+					<section>
+						<h1>Uniform Interface</h1>
+					</section>
+					<section>
+						<h1>GET, PUT, and DELETE</h1>
+					</section>
+					<section>
+						<h1>POST</h1>
+						<aside class="notes">
+							This method essentially has two purposes: one that fits in with the constraints of REST, and one that goes outside REST and introduces an element of the RPC style. In complex cases like this it’s best to go back to the original text
+						</aside>
+					</section>
+					<section>
+						<h1>HEAD and OPTIONS</h1>
+						<ul>
+							<li>Retrieve a metadata-only representation: HTTP HEAD</li>
+							<li>Check which HTTP methods a particular resource supports: HTTP OPTIONS</li>
+						</ul>
+						<aside class="notes">
+							A client can use HEAD to check whether a resource exists, or find out other information about the resource, without fetching its entire representation. HEAD gives you exactly what a GET request would give you, but without the entity-body.
+
+							The OPTIONS method lets the client discover what it’s allowed to do to a resource. The response to an OPTIONS request contains the HTTP Allow header, which lays out the subset of the uniform interface this resource supports. Here’s a sample Allow header: Allow: GET, HEAD That particular header means the client can expect the server to act reasonably to a GET or HEAD request for this resource, but that the resource doesn’t support any other HTTP methods. Effectively, this resource is read-only.
+						</aside>
+					</section>
+					<section>
+						<h1>PUT versus POST</h1>
+						<aside class="notes">
+							The difference between PUT and POST is this: the client uses PUT when it’s in charge of deciding which URI the new resource should have. The client uses POST when the server is in charge of deciding which URI the new resource should have.
+
+							The POST method is a way of creating a new resource without the client having to know its exact URI. In most cases the client only needs to know the URI of a “parent” or "factory" resource. The server takes the representation from the entity-body and uses it to create a new resource “underneath” the “parent” resource (the meaning of "underneath" depends on context).
+						</aside>
+					</section>
+					<section>
+						<h1>Overloading POST</h1>
+						<blockquote>The real information may be in the URI, the HTTP headers, or the entity-body. However it happens, an element of the RPC style has crept into the service.</blockquote>
+					</section>
+				</section>
+
+				<section>
+					<h1>Safety and Idempotence</h1>
+					<blockquote>When correctly used, GET and HEAD requests are safe. GET, HEAD, PUT and DELETE requests are idempotent.</blockquote>
+					<aside class="notes">
+						The most common misuse of the uniform interface is to expose unsafe operations through GET. The del.icio.us and Flickr APIs both do this. When you GET https://api.del.icio.us/posts/delete, you’re not fetching a representation: you’re modifying the del.icio.us data set.
+					</aside>
+				</section>
+
+				<section>
+					<section>
+						<h1>URI Desing</h1>
+						<blockquote>URIs are supposed to designate resources, not operations on the resources.</blockquote>
+					</section>
+					
+					<section style="font-size: .8em">
+						<table>
+							<thead>
+								<tr>
+						            <th>
+						                Method
+						            </th>
+						            <th>
+						                URI Template
+						            </th>
+						            <th>
+						                Equivalent RPC Operation
+						            </th>
+						        </tr>
+							</thead>
+						    <tbody>
+						        <tr>
+						            <td valign="top">
+						                <p>PUT</p>
+						            </td>
+						            <td valign="top">
+						                <p>users/{username}</p>
+						            </td>
+						            <td valign="top">
+						                <p>createUserAccount</p>
+						            </td>
+						        </tr>
+						        <tr>
+						            <td valign="top">
+						                <p>GET</p>
+						            </td>
+						            <td valign="top">
+						                <p>users/{username}</p>
+						            </td>
+						            <td valign="top">
+						                <p>getUserAccount</p>
+						            </td>
+						        </tr>
+						        <tr>
+						            <td valign="top">
+						                <p>PUT</p>
+						            </td>
+						            <td valign="top">
+						                <p>users/{username}</p>
+						            </td>
+						            <td valign="top">
+						                <p>updateUserAccount</p>
+						            </td>
+						        </tr>
+						        <tr>
+						            <td valign="top">
+						                <p>DELETE</p>
+						            </td>
+						            <td valign="top">
+						                <p>users/{username}</p>
+						            </td>
+						            <td valign="top">
+						                <p>deleteUserAccount</p>
+						            </td>
+						        </tr>
+						        <tr>
+						            <td valign="top">
+						                <p>GET</p>
+						            </td>
+						            <td valign="top">
+						                <p>users/{username}/profile</p>
+						            </td>
+						            <td valign="top">
+						                <p>getUserProfile</p>
+						            </td>
+						        </tr>
+						        <tr>
+						            <td valign="top">
+						                <p>POST</p>
+						            </td>
+						            <td valign="top">
+						                <p>users/{username}/bookmarks</p>
+						            </td>
+						            <td valign="top">
+						                <p>createBookmark</p>
+						            </td>
+						        </tr>
+						        <tr>
+						            <td valign="top">
+						                <p>PUT</p>
+						            </td>
+						            <td valign="top">
+						                <p>users/{username}/bookmarks/{id}</p>
+						            </td>
+						            <td valign="top">
+						                <p>updateBookmark</p>
+						            </td>
+						        </tr>
+						        <tr>
+						            <td valign="top">
+						                <p>DELETE</p>
+						            </td>
+						            <td valign="top">
+						                <p>users/{username}/bookmarks/{id}</p>
+						            </td>
+						            <td valign="top">
+						                <p>deleteBookmark</p>
+						            </td>
+						        </tr>
+						        <tr>
+						            <td valign="top">
+						                <p>GET</p>
+						            </td>
+						            <td valign="top">
+						                <p>users/{username}/bookmarks/{id}</p>
+						            </td>
+						            <td valign="top">
+						                <p>getBookmark</p>
+						            </td>
+						        </tr>
+						        <tr>
+						            <td valign="top">
+						                <p>GET</p>
+						            </td>
+						            <td valign="top">
+						                <p>users/{username}/bookmarks?tag={tag}</p>
+						            </td>
+						            <td valign="top">
+						                <p>getUserBookmarks</p>
+						            </td>
+						        </tr>
+						        <tr>
+						            <td valign="top">
+						                <p>GET</p>
+						            </td>
+						            <td valign="top">
+						                <p>{username}?tag={tag}</p>
+						            </td>
+						            <td valign="top">
+						                <p>getUserPublicBookmarks</p>
+						            </td>
+						        </tr>
+						        <tr>
+						            <td valign="top">
+						                <p>GET</p>
+						            </td>
+						            <td valign="top">
+						                <p>?tag={tag}</p>
+						            </td>
+						            <td valign="top">
+						                <p>getPublicBookmarks</p>
+						            </td>
+						        </tr>
+						    </tbody>
+						</table>
+					</section>
+
+					<section>
+						<ul>
+							<li>Use commas when the order of the items matters, as it does in latitude and longitude: /earth/37.0,-95.2</li>
+							<li>Use semicolons when the order doesn’t matter: /color-blends/red;blue</li>
+							<li>When designing URIs, use path variables to separate elements of a hierarchy, or a path through a directed graph.</li>
+							<li>Use query variables only to suggest arguments being plugged into an algorithm, or when the other two techniques fail.</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<h1>Outgoing Representations</h1>
+					<blockquote>Representations should be human-readable, but computer-oriented</blockquote>
+					<aside class="notes">
+						The job of the human web is to present information for direct human consumption. The main job of the programmable web is to present the same information for manipulation by computer programs.
+					</aside>
+				</section>
+
+				<section>
+					<h1>Service Versioning</h1>
+					<blockquote>Even a well-connected service might need to be versioned</blockquote>
+				</section>
+
+				<section>
+					<h1>Security</h1>
+					<h2>HMAC</h2>
+					<pre><code>"Authorization: AWS " + AWSAccessKeyId+ ":" +
+                base64(hmac-sha1(VERB + "\n" +
+                   CONTENT-MD5 + "\n" +
+                   CONTENT-TYPE + "\n" +
+                   DATE + "\n" +
+                   CanonicalizedAmzHeaders + "\n" +
+                   CanonicalizedResource))
+
+Authorization: AWS 44CF9590006BF252F707:jZNOcbfWmD/A/f3hSvVzXZjM2HU=</code></pre>
+					<aside class="notes">
+						HMAC allows you to verify the password (or private key) without requiring the user to embed it in the request and also verifies the basic integrity of the request. If an attacker manipulated the request in any way in transit, the signatures would not match and the request would not be authenticated. This is a huge win, especially if the Web service requests are not being made over a secure HTTP connection.
+
+						In order to calculate the HMAC on the server, I have to remove the incoming HMAC parameter from the request body and calculate the HMAC using the remaining parameters. This is where the previous issue comes into play. If the HMAC were not in the request, I could simply calculate the signature based on the raw incoming request. Once I start manipulating the incoming request, the chances of reconstructing it imperfectly rise, possibly introducing cases where the signatures don’t match even though the request is valid.
+					</aside>
+				</section>
+
+				<section>
+					<section>
+						<h1>JSON or XML</h1>
+					</section>
+					<section>
+						<h2>JSON</h2>
+					</section>
+					<section>
+						<blockquote>If all you want to pass around are atomic values or lists or hashes of atomic values, JSON has many of the advantages of XML: it’s straightforwardly usable over the Internet, supports a wide variety of applications, it’s easy to write programs to process JSON, it has few optional features, it’s human-legible and reasonably clear, its design is formal and concise, JSON documents are easy to create, and it uses Unicode.</blockquote>
+					</section>
+					<section>
+						<blockquote>If you’re writing JavaScript in a web browser, JSON is a natural fit. The XML APIs in the browser are comparitively clumsy and the natural mapping from JavaScript objects to JSON eliminates the serialization issues that arise if you’re careless with XML.</blockquote>
+					</section>
+					<section>
+						<blockquote>One line of argument for JSON over XML is simplicity. If you mean it’s simpler to have a single data interchange format instead of two, that’s incontrovertibly the case. If you mean JSON is intrinsically simpler than XML, well, I’m not sure that’s so obvious. For bundles of atomic values, it’s a little simpler. And the JavaScript APIs are definitely simpler. But I’ve seen attempts to represent mixed content in JSON and simple they aren’t.</blockquote>
+					</section>
+					<section>
+						<h2>XML</h2>
+					</section>
+					<section>
+						<blockquote>XML deals remarkably well with the full richness of unstructured data. I’m not worried about the future of XML at all even if its death is gleefully celebrated by a cadre of web API designers.</blockquote>
+					</section>
+					<section>
+						<blockquote>I look forward to seeing what the JSON folks do when they are asked to develop richer APIs. When they want to exchange less well strucured data, will they shoehorn it into JSON? I see occasional mentions of a schema language for JSON, will other languages follow?</blockquote>
+					</section>
+					<section>
+						<blockquote>I predict there will come a day when someone wants to federate JSON data across several application domains. I wonder, when they discover that the key "width" means different things to different constituencies, will they invent namespaces too?</p>
+					</section>
+				</section>
+
+				<section>
+					<h1>JSON and Hypermedia</h1>
 					<ul>
-						<li><a href="http://slid.es">Try the online editor</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js">Source code on GitHub</a></li>
-						<li><a href="http://twitter.com/hakimel">Follow me on Twitter</a></li>
+						<li>HAL Media Types</li>
+						<li>HAL and Links</li>
+						<li>HAL and Resources</li>
+						<li>HAL Embedded Resources</li>
+					</ul>
+					<aside class="notes">
+						HAL defines two generic media types: application/hal+xml and application/hal+json. You will use these as the response Content-Type, as they describe the response representation; the client can simply request application/json, and the response format remains compatible.
+
+						HAL provides a very simple structure for JSON hypermedia links. First, all resource representations must contain hypermedia links, and all links are provided in a “_links” object.
+
+						HAL imposes no structure over resources other than requiring the hypermedia links; even then, you typically do not include the hypermedia links when making a request of the web service; the hypermedia links are included only in the representations returned by the service.
+
+						The other important thing that HAL defines is how to embed resources. Why is this important? If the resource references other resources, you will want to be able to link to them so you can perform operations on them, too.
+					</aside>
+				</section>
+
+				<section>
+					<section>
+						<h1>Error handling</h1>
+						<h2>Why Status Codes Aren’t Enough?</h2>
+					</section>
+					<section>
+						<p>A status code simply isn’t enough information most of the time. Yes, you want to define standard status codes so that your clients can perform reasonable branching, but you also need a way to communicate details to the end-user, so that they can log the information for themselves, display information to their own end-users, and/or report it back to you so you can do something to resolve the situation.</p>
+					</section>
+				</section>
+
+				<section>
+					<h1>Sources</h1>
+					<ul>
+						<li><a href="http://shop.oreilly.com/product/9780596529260.do">RESTful Web Services</a></li>
+						<li><a href="http://msdn.microsoft.com/en-us/library/dd203052.aspx">Microsoft REST Spec</a></li>
+						<li><a href="http://docs.aws.amazon.com/AmazonSimpleDB/latest/DeveloperGuide/HMACAuth.html">Amazon's HMAC-SHA</a></li>
+						<li><a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html">HTTP Method Definitions</a></li>
+						<li><a href="http://www.slideshare.net/rmaclean/json-and-rest">JSON and REST presentation</a></li>
+						<li><a href="https://github.com/mikekelly/hal_specification/blob/master/hal_specification.md">HAL Specification</a></li>
 					</ul>
 				</section>
 
 				<section>
 					<h1>THE END</h1>
-					<h3>BY Hakim El Hattab / hakim.se</h3>
+					<br />
+					<p>Sławomir Chrobak / <a href="https://twitter.com/schrobak">@schrobak</a></p>
+					<p>Link to presentation: <a href="http://schrobak.github.io/slides/tgor">http://schrobak.github.io/slides/tgor</a></p>
 				</section>
 
 			</div>
@@ -344,6 +572,9 @@ function linkify( selector ) {
 				history: true,
 				center: true,
 
+				minScale: 1.0,
+				maxScale: 1.2,
+
 				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
 				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
 
@@ -361,6 +592,8 @@ function linkify( selector ) {
 			});
 
 		</script>
+
+		<script src="js/custom.js"></script>
 
 	</body>
 </html>
