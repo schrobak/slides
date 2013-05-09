@@ -175,29 +175,24 @@
 				</section>
 
 				<section>
-					<section>
-						<h1>Resource-Oriented Basics</h1>
-						<ul>
-							<li>different audience</li>
-							<li>everything (interesting) thing represent as a resource</li>
-							<li>representation of resources</li>
-							<li>verbs, auxiliaries, complexity</li>
-						</ul>
-					</section>
+					<h1>Resource-Oriented Basics</h1>
+					<ul>
+						<li>different audience</li>
+						<li>everything (interesting) thing represent as a resource</li>
+						<li>representation of resources</li>
+						<li>verbs, auxiliaries, complexity</li>
+					</ul>
 
-					<section>
-						<p>TODO: add list</p>
-						<aside class="notes">
-							The only differences between a web service and a web site are the audience (preprogrammed clients instead of human beings) and a few client capabilities. Both web services and web sites benefit from a resource-oriented design based on HTTP, URIs, and (usually) XML.
+					<aside class="notes">
+						The only differences between a web service and a web site are the audience (preprogrammed clients instead of human beings) and a few client capabilities. Both web services and web sites benefit from a resource-oriented design based on HTTP, URIs, and (usually) XML.
 
-							Every interesting thing your application manages should be exposed as a resource. A resource can be anything a client might want to link to: a work of art, a piece of information, a physical object, a concept, or a grouping of references to other resources.
-							A URI is the name of a resource. Every resource must have at least one name. A resource should have as few names as possible, and every name should be meaningful.
-							
-							The client cannot access resources directly. A web service serves representations of a resource: documents in specific data formats that contain information about the resource. The difference between a resource and its representation is somewhat academic for static web sites, where the resources are just files on disk that are sent verbatim to clients. The distinction takes on greater importance when the resource is a row in a database, a physical object, an abstract concept, or a real-world event in progress.
-							
-							All access to resources happens through HTTP’s uniform interface. These are the four basic HTTP verbs (GET, POST, PUT, and DELETE), and the two auxiliaries (HEAD and OPTIONS). Put complexity in your representations, in the variety of resources you expose, and in the links between resources. Don’t put it in the access methods.
-						</aside>
-					</section>
+						Every interesting thing your application manages should be exposed as a resource. A resource can be anything a client might want to link to: a work of art, a piece of information, a physical object, a concept, or a grouping of references to other resources.
+						A URI is the name of a resource. Every resource must have at least one name. A resource should have as few names as possible, and every name should be meaningful.
+						
+						The client cannot access resources directly. A web service serves representations of a resource: documents in specific data formats that contain information about the resource. The difference between a resource and its representation is somewhat academic for static web sites, where the resources are just files on disk that are sent verbatim to clients. The distinction takes on greater importance when the resource is a row in a database, a physical object, an abstract concept, or a real-world event in progress.
+						
+						All access to resources happens through HTTP’s uniform interface. These are the four basic HTTP verbs (GET, POST, PUT, and DELETE), and the two auxiliaries (HEAD and OPTIONS). Put complexity in your representations, in the variety of resources you expose, and in the links between resources. Don’t put it in the access methods.
+					</aside>
 				</section>
 
 				<section>
@@ -583,8 +578,8 @@ Authorization: AWS 44CF9590006BF252F707:jZNOcbfWmD/A/f3hSvVzXZjM2HU=</code></pre
 				history: true,
 				center: true,
 
-				minScale: 1.0,
-				maxScale: 1.2,
+				// minScale: 1.0,
+				// maxScale: 1.2,
 
 				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
 				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
