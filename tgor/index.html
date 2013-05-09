@@ -76,8 +76,8 @@
 					<section>
 						<h2>Few REST-RPC examples</h2>
 						<ul>
-							<li>The del.icio.us API</li>
-							<li>The "REST" Flickr web API</li>
+							<li>The <a href="https://delicious.com/developers">del.icio.us API</a></li>
+							<li>The "REST" <a href="http://www.flickr.com/services/api/">Flickr web API</a></li>
 							<li>Many other allegedly RESTful web services</li>
 							<li>Most web applications</li>
 						</ul>
@@ -148,13 +148,13 @@
 					<section>
 						<h2>Two types of state:</h2>
 						<ol>
-							<li>resource state</li>
-							<li>application state</li>
+							<li>application state - live on the client</li>
+							<li>resource state - live on the server</li>
 						</ol>
 					</section>
 
 					<section>
-						<p class="fragment fade-in">Resource state stays on the server and is only sent to the client in the form of representations.</p>
+						<p class="fragment">Resource state stays on the server and is only sent to the client in the form of representations.</p>
 						<p class="fragment fade-in">Application state stays on the client until it can be used to create, modify, or delete a resource. Then it's sent to the server as part of POST, PUT, or DELETE request, and becomes resource state.</p>
 						<p class="fragment fade-in">RESTful service is "stateless" if the server never stores any application state.</p>
 					</section>
@@ -177,6 +177,12 @@
 				<section>
 					<section>
 						<h1>Resource-Oriented Basics</h1>
+						<ul>
+							<li>different audience</li>
+							<li>everything (interesting) thing represent as a resource</li>
+							<li>representation of resources</li>
+							<li>verbs, auxiliaries, complexity</li>
+						</ul>
 					</section>
 
 					<section>
@@ -225,6 +231,7 @@
 
 				<section>
 					<h1>Connectedness</h1>
+					<img src="image/connectedness.png">
 					<aside class="notes">
 						In a well-connected service, the client can make a path through the application by following links and filling out forms. In a service that’s not connected, the client must use predefined rules to construct every URI it wants to visit. Right now the human web is very well-connected, because most pages on a web site can be reached by following links from the main page. Right now the programmable web is not very well-connected.
 					</aside>
@@ -446,7 +453,7 @@
 				</section>
 
 				<section>
-					<h1>Outgoing Representations</h1>
+					<h1>Representations</h1>
 					<blockquote>Representations should be human-readable, but computer-oriented</blockquote>
 					<aside class="notes">
 						The job of the human web is to present information for direct human consumption. The main job of the programmable web is to present the same information for manipulation by computer programs.
@@ -460,8 +467,8 @@
 
 				<section>
 					<h1>Security</h1>
-					<h2>HMAC</h2>
-					<pre><code>"Authorization: AWS " + AWSAccessKeyId+ ":" +
+					<h2 class="fragment fade-in">HMAC</h2>
+					<pre class="fragment fade-in"><code>"Authorization: AWS " + AWSAccessKeyId+ ":" +
                 base64(hmac-sha1(VERB + "\n" +
                    CONTENT-MD5 + "\n" +
                    CONTENT-TYPE + "\n" +
@@ -539,20 +546,20 @@ Authorization: AWS 44CF9590006BF252F707:jZNOcbfWmD/A/f3hSvVzXZjM2HU=</code></pre
 				<section>
 					<h1>Sources</h1>
 					<ul>
-						<li><a href="http://shop.oreilly.com/product/9780596529260.do">RESTful Web Services</a></li>
-						<li><a href="http://msdn.microsoft.com/en-us/library/dd203052.aspx">Microsoft REST Spec</a></li>
-						<li><a href="http://docs.aws.amazon.com/AmazonSimpleDB/latest/DeveloperGuide/HMACAuth.html">Amazon's HMAC-SHA</a></li>
-						<li><a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html">HTTP Method Definitions</a></li>
-						<li><a href="http://www.slideshare.net/rmaclean/json-and-rest">JSON and REST presentation</a></li>
-						<li><a href="https://github.com/mikekelly/hal_specification/blob/master/hal_specification.md">HAL Specification</a></li>
+						<li><a href="http://shop.oreilly.com/product/9780596529260.do" target="_blank">RESTful Web Services</a></li>
+						<li><a href="http://msdn.microsoft.com/en-us/library/dd203052.aspx" target="_blank">Microsoft REST Spec</a></li>
+						<li><a href="http://docs.aws.amazon.com/AmazonSimpleDB/latest/DeveloperGuide/HMACAuth.html" target="_blank">Amazon's HMAC-SHA</a></li>
+						<li><a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html" target="_blank">HTTP Method Definitions</a></li>
+						<li><a href="http://www.slideshare.net/rmaclean/json-and-rest" target="_blank">JSON and REST presentation</a></li>
+						<li><a href="https://github.com/mikekelly/hal_specification/blob/master/hal_specification.md" target="_blank">HAL Specification</a></li>
 					</ul>
 				</section>
 
 				<section>
 					<h1>THE END</h1>
 					<br />
-					<p>Sławomir Chrobak / <a href="https://twitter.com/schrobak">@schrobak</a></p>
-					<p>Link to presentation: <a href="http://schrobak.github.io/slides/tgor">http://schrobak.github.io/slides/tgor</a></p>
+					<p>Sławomir Chrobak / <a href="https://twitter.com/schrobak" target="_blank">@schrobak</a></p>
+					<p>Link to presentation: <a href="http://schrobak.github.io/slides/tgor" target="_blank">http://schrobak.github.io/slides/tgor</a></p>
 				</section>
 
 			</div>
